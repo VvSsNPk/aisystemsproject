@@ -1,6 +1,5 @@
 use std::collections::HashSet;
 use std::fmt::{Display, Formatter};
-
 #[derive(Clone)]
 pub struct State {
     pub start : Option<(usize,usize)>,
