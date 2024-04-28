@@ -1,10 +1,12 @@
 pub mod state;
 
+use std::char::MAX;
 use std::collections::HashSet;
 use std::error::Error;
 use std::fs::File;
 use std::io::{BufRead, BufReader};
 use std::path::Path;
+use std::usize;
 use state::State;
 pub fn create_state(path: &str) -> State {
     let mut f = File::open(path);
@@ -48,9 +50,11 @@ pub fn no_start_given(state: &mut State) -> HashSet<(usize,usize)>{
             &new_state.uncleaned.remove(&i);
             &new_state.cleaned.push(*i);
             new_state.start =Some(*i);
+            println!("{}",new_state);
             for i in m.chars(){
                 &new_state.move_cleaner(i);
             }
+            println!("{}",new_state);
             ret.extend(&new_state.uncleaned);
 
         }
